@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>CS5513 week 2</title>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body{
+      text-align: center;
+      background-color: rgba(7, 7, 7, 0.377);
+    }
+
+    ul{
+      list-style-type:none;
+      font-size: larger;
+    }
+    li{
+      padding-top:10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Data on json file</h1>
+	<div id="showName"></div>
+
+  <script type="text/babel" data-type="module" data-presets="react">
+  "use strict";
+
+  import React from 'https://cdn.jsdelivr.net/npm/react@19.1.1/+esm';
+  import { createRoot } from 'https://cdn.jsdelivr.net/npm/react-dom@19.1.1/client/+esm';
+
+    function DisplayName(data) {
+      return <div>
+          <ul>
+            {
+              data.list.map( 
+                (name,i) => (
+                  <li key={i}>
+                      {name.lastname},{" "} 
+                      {name.firstname}
+                  </li>
+                )
+              )
+            }
+          </ul>
+        </div>;
+      }
+
+  $.getJSON("something", function(jsonFile) {
+    console.log(jsonFile);
+    const nameElement = document.getElementById('showName');
+    const targetRoot = createRoot(nameElement);
+    targetRoot.render(<DisplayName list={jsonFile} />);
+  });
+  </script>
+</body>
+
+</html>
